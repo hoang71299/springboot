@@ -1,9 +1,9 @@
 package com.baitap.demo.controller;
 
 
-import com.baitap.demo.Department;
+import com.baitap.demo.modal.Department;
 import com.baitap.demo.dto.ApiResponse;
-import com.baitap.demo.dto.JsonInclude;
+import com.baitap.demo.util.JsonInclude;
 import com.baitap.demo.exception.ApiException;
 import com.baitap.demo.exception.ErrorCode;
 import org.springframework.http.ResponseEntity;

@@ -1,7 +1,6 @@
-package com.baitap.demo;
+package com.baitap.demo.modal;
 
 import com.baitap.demo.enums.Gender;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

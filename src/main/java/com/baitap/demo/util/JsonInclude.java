@@ -1,5 +1,6 @@
-package com.baitap.demo.dto;
+package com.baitap.demo.util;
 
+import com.baitap.demo.dto.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 

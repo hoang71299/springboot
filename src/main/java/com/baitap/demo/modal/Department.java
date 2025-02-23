@@ -1,4 +1,4 @@
-package com.baitap.demo;
+package com.baitap.demo.modal;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
