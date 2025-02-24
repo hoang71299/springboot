@@ -40,7 +40,7 @@ public class EmployeeController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<ApiResponse<Employee>> getEmployeeById(@PathVariable UUID id) {
+	public ResponseEntity<ApiResponse<Employee>> getEmployeeById(@PathVariable int id) {
 		if(employeeService.findById(id) != null){
 			return JsonInclude.ok(employeeService.findById(id));
 		}
@@ -48,7 +48,7 @@ public class EmployeeController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<ApiResponse<Employee>> updateEmployee(@PathVariable UUID id, @RequestBody Employee employee) {
+	public ResponseEntity<ApiResponse<Employee>> updateEmployee(@PathVariable int id, @RequestBody Employee employee) {
 		Employee existingEmployee = employeeService.findById(id);
 		if (existingEmployee != null) {
 			employee.setId(id);
@@ -58,7 +58,7 @@ public class EmployeeController {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> deleteEmployee(@PathVariable UUID id) {
+	public ResponseEntity<?> deleteEmployee(@PathVariable int id) {
 		if(employeeService.findById(id) == null){
 			throw new ApiException(ErrorCode.EMPLOYEE_NOT_FOUND);
 		}

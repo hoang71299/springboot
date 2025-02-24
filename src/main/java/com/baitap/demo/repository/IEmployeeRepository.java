@@ -9,8 +9,8 @@ import java.util.UUID;
 public interface IEmployeeRepository {
 
 	List<Employee> findByAttributes(EmployeeSearchRequest employeeSearchRequest);
-	Employee findById(UUID id);
+	Employee findById(int id);
 	Employee save(Employee employee);
 
-	void delete(UUID id);
+	void delete(int id);
 }

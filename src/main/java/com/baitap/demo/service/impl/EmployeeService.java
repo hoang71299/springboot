@@ -25,7 +25,7 @@ public class EmployeeService implements IEmployeeService {
 	}
 
 	@Override
-	public Employee findById(UUID id) {
+	public Employee findById(int id) {
 		return employeeRepository.findById(id);
 	}
 
@@ -35,7 +35,7 @@ public class EmployeeService implements IEmployeeService {
 	}
 
 	@Override
-	public void delete(UUID id) {
+	public void delete(int id) {
 		employeeRepository.delete(id);
 	}
 }

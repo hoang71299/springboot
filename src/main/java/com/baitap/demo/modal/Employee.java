@@ -12,9 +12,9 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-
+@Builder
 public class Employee {
-	UUID id;
+	int id;
 	String name;
 	LocalDate dateOfBirth;
 	Gender gender;
