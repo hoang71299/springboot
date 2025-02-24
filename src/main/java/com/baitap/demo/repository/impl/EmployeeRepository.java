@@ -1,9 +1,9 @@
-package com.baitap.demo.service.repository.impl;
+package com.baitap.demo.repository.impl;
 
 import com.baitap.demo.dto.employee.EmployeeSearchRequest;
 import com.baitap.demo.enums.Gender;
 import com.baitap.demo.modal.Employee;
-import com.baitap.demo.service.repository.IEmployeeRepository;
+import com.baitap.demo.repository.IEmployeeRepository;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Repository;

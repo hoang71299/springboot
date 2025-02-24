@@ -2,7 +2,7 @@ package com.baitap.demo.service.impl;
 
 import com.baitap.demo.dto.employee.EmployeeSearchRequest;
 import com.baitap.demo.modal.Employee;
-import com.baitap.demo.service.repository.IEmployeeRepository;
+import com.baitap.demo.repository.IEmployeeRepository;
 import com.baitap.demo.service.IEmployeeService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;

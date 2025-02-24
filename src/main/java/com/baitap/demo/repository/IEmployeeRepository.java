@@ -1,4 +1,4 @@
-package com.baitap.demo.service.repository;
+package com.baitap.demo.repository;
 
 import com.baitap.demo.dto.employee.EmployeeSearchRequest;
 import com.baitap.demo.modal.Employee;
