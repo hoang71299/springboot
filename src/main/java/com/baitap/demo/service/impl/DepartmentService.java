@@ -22,9 +22,10 @@ public class DepartmentService implements IDepartmentService {
 	}
 
 	@Override
-	public Department findById(int id) {
+	public Department findById(long id) {
 		return departmentRepository.findById(id);
 	}
+
 
 	@Override
 	public Department save(Department department) {

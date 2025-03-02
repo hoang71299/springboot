@@ -13,7 +13,7 @@ import java.util.List;
 public interface IDepartmentRepository {
 	List<Department> findAll();
 
-	Department findById(int id);
+	Department findById(long id);
 
 	Department save(Department department);
 

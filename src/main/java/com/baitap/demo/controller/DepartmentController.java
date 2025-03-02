@@ -25,7 +25,7 @@ public class DepartmentController {
 	IDepartmentService departmentService;
 
 	@GetMapping
-	public ResponseEntity<ApiResponse<List<Department>>> getDepartments(){
+	public ResponseEntity<?> getDepartments(){
 		return JsonInclude.ok(departmentService.findAll());
 	}
 	@GetMapping("/{id}")
@@ -40,7 +40,7 @@ public class DepartmentController {
 		return JsonInclude.created(departmentService.save(department));
 	}
 	@PutMapping("/{id}")
-	public ResponseEntity<ApiResponse<Department>> updateDepartment(@PathVariable int id ,
+	public ResponseEntity<ApiResponse<Department>> updateDepartment(@PathVariable long id ,
 																	@RequestBody Department department){
 
 		if(departmentService.findById(id) == null){

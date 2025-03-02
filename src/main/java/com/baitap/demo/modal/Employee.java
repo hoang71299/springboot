@@ -1,9 +1,11 @@
 package com.baitap.demo.modal;
 
 import com.baitap.demo.enums.Gender;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -13,14 +15,20 @@ import java.util.UUID;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
+@Entity
 public class Employee {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int id;
 	String name;
-	LocalDate dateOfBirth;
+	LocalDate dob;
+	@Column(columnDefinition = "enum('MALE', 'FEMALE', 'OTHER')")
+	@Enumerated(EnumType.STRING)
 	Gender gender;
-	Double salary;
+	BigDecimal salary;
 	String phone;
-	Integer departmentId;
+	@ManyToOne
+	Department department;
 
 
 }
