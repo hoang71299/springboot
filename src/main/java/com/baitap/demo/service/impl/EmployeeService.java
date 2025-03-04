@@ -1,6 +1,7 @@
 package com.baitap.demo.service.impl;
 
 import com.baitap.demo.dto.employee.EmployeeSearchRequest;
+import com.baitap.demo.enums.Gender;
 import com.baitap.demo.modal.Employee;
 import com.baitap.demo.repository.IEmployeeRepository;
 import com.baitap.demo.service.IEmployeeService;
@@ -21,8 +22,15 @@ public class EmployeeService implements IEmployeeService {
 
 	@Override
 	public List<Employee> findByAttributes(EmployeeSearchRequest employeeSearchRequest) {
-		return employeeRepository.findByAttributes(employeeSearchRequest);
-	}
+		return employeeRepository.findByAttributes(employeeSearchRequest.getName(),
+				employeeSearchRequest.getDobFrom(),
+				employeeSearchRequest.getDobTo(),
+				employeeSearchRequest.getGender(),
+				employeeSearchRequest.getPhone(),
+				employeeSearchRequest.getDepartmentId(),
+				employeeSearchRequest.getSalaryRange()
+				);
+	};
 
 	@Override
 	public Employee findById(int id) {
@@ -36,6 +44,6 @@ public class EmployeeService implements IEmployeeService {
 
 	@Override
 	public void delete(int id) {
-		employeeRepository.delete(id);
+		employeeRepository.deleteById(id);
 	}
 }

@@ -24,11 +24,9 @@ public class Employee {
 	LocalDate dob;
 	@Column(columnDefinition = "enum('MALE', 'FEMALE', 'OTHER')")
 	@Enumerated(EnumType.STRING)
-	Gender gender;
+	Gender gender ;
 	BigDecimal salary;
 	String phone;
 	@ManyToOne
 	Department department;
-
-
 }

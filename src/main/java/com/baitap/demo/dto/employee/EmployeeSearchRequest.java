@@ -13,7 +13,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class EmployeeSearchRequest {
-
 	String name;
 	LocalDate dobFrom;
 	LocalDate dobTo;
