@@ -25,7 +25,7 @@ public class EmployeeService implements IEmployeeService {
 		return employeeRepository.findByAttributes(employeeSearchRequest.getName(),
 				employeeSearchRequest.getDobFrom(),
 				employeeSearchRequest.getDobTo(),
-				employeeSearchRequest.getGender(),
+				employeeSearchRequest.getGender() == null ? null : employeeSearchRequest.getGender().toString(),
 				employeeSearchRequest.getPhone(),
 				employeeSearchRequest.getDepartmentId(),
 				employeeSearchRequest.getSalaryRange()

@@ -1,6 +1,7 @@
 package com.baitap.demo.modal;
 
 import com.baitap.demo.enums.Gender;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -28,5 +29,6 @@ public class Employee {
 	BigDecimal salary;
 	String phone;
 	@ManyToOne
+	@JsonIgnore
 	Department department;
 }

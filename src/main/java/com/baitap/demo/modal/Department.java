@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -16,4 +18,7 @@ public class Department {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	String name;
+
+	@OneToMany(mappedBy = "department")
+	private List<Employee> employees;
 }

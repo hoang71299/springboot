@@ -23,7 +23,7 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Integer> {
 			and (:phone is null or e.phone like concat('%', :phone, '%'))
 			and (:departmentId is null or e.department_id = :departmentId)
 			and(
-				case 
+				case
 					when :salaryRange = "lt5" then e.salary < 5000
 					when :salaryRange = "5-10" then e.salary between 5000 and 10000
 					when :salaryRange = "10-20" then e.salary between 10000 and 20000
@@ -35,12 +35,12 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Integer> {
 	List<Employee> findByAttributes(@Param("name") String name,
 									@Param("dobFrom") LocalDate dobFrom,
 									@Param("dobTo") LocalDate dobTo,
-									@Param("gender") Gender gender,
+									@Param("gender") String gender,
 									@Param("phone") String phone,
 									@Param("departmentId") Integer departmentId,
 									@Param("salaryRange") String salaryRange);
-	Employee findById(int id);
+	Employee findById(long id);
 	Employee save(Employee employee);
 
-	void deleteById(int id);
+	void deleteById(long id);
 }

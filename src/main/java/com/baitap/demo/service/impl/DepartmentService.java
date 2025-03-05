@@ -33,7 +33,7 @@ public class DepartmentService implements IDepartmentService {
 	}
 
 	@Override
-	public void delete(int id) {
+	public void delete(long id) {
 		departmentRepository.deleteById(id);
 	}
 }

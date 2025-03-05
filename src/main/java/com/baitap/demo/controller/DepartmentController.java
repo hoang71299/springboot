@@ -51,7 +51,7 @@ public class DepartmentController {
 
 	}
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> deleteDepartment(@PathVariable int id){
+	public ResponseEntity<?> deleteDepartment(@PathVariable long id){
 		if(departmentService.findById(id) != null){
 			departmentService.delete(id);
 			return JsonInclude.noContent();
