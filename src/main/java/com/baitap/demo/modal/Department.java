@@ -3,7 +3,10 @@ package com.baitap.demo.modal;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -21,4 +24,10 @@ public class Department {
 
 	@OneToMany(mappedBy = "department")
 	private List<Employee> employees;
+
+	@CreationTimestamp
+	@Column(updatable = false)
+	LocalDateTime createdAt;
+	@UpdateTimestamp
+	LocalDateTime updatedAt;
 }

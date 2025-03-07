@@ -5,10 +5,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.UUID;
+import java.time.LocalDateTime;
+
+
+
 
 @Getter
 @Setter
@@ -31,4 +36,9 @@ public class Employee {
 	@ManyToOne
 	@JsonIgnore
 	Department department;
+	@CreationTimestamp
+	@Column(updatable = false)
+	LocalDateTime createdAt;
+	@UpdateTimestamp
+	LocalDateTime updatedAt;
 }
