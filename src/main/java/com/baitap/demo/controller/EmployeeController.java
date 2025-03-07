@@ -2,6 +2,7 @@ package com.baitap.demo.controller;
 
 
 import com.baitap.demo.dto.employee.EmployeeSearchRequest;
+import com.baitap.demo.dto.page.PageResponse;
 import com.baitap.demo.modal.Employee;
 
 import com.baitap.demo.dto.ApiResponse;
@@ -13,6 +14,7 @@ import com.baitap.demo.exception.ErrorCode;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,10 +29,11 @@ public class EmployeeController {
 	IEmployeeService employeeService;
 	@GetMapping
 	public ResponseEntity<?> getAll(
-			EmployeeSearchRequest employeeSearchRequest
+			EmployeeSearchRequest employeeSearchRequest,
+			Pageable pageable
 	) {
 
-		return JsonInclude.ok(employeeService.findByAttributes(employeeSearchRequest));
+		return JsonInclude.ok(new PageResponse<>(employeeService.findByAttributes(employeeSearchRequest,pageable)));
 	}
 
 	@PostMapping

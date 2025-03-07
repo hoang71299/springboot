@@ -1,5 +1,6 @@
 package com.baitap.demo.modal;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -23,6 +24,7 @@ public class Department {
 	String name;
 
 	@OneToMany(mappedBy = "department")
+	@JsonIgnore
 	private List<Employee> employees;
 
 	@CreationTimestamp

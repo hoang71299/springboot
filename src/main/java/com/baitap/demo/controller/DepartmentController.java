@@ -1,6 +1,7 @@
 package com.baitap.demo.controller;
 
 
+import com.baitap.demo.dto.page.PageResponse;
 import com.baitap.demo.modal.Department;
 import com.baitap.demo.dto.ApiResponse;
 import com.baitap.demo.service.IDepartmentService;
@@ -10,6 +11,7 @@ import com.baitap.demo.exception.ErrorCode;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,8 +27,8 @@ public class DepartmentController {
 	IDepartmentService departmentService;
 
 	@GetMapping
-	public ResponseEntity<?> getDepartments(){
-		return JsonInclude.ok(departmentService.findAll());
+	public ResponseEntity<?> getDepartments(Pageable pageable){
+		return JsonInclude.ok(new PageResponse<>(departmentService.findAll(pageable)));
 	}
 	@GetMapping("/{id}")
 	public ResponseEntity<ApiResponse<Department>> getDepartmentById(@PathVariable int id){

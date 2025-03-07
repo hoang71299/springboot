@@ -34,7 +34,6 @@ public class Employee {
 	BigDecimal salary;
 	String phone;
 	@ManyToOne
-	@JsonIgnore
 	Department department;
 	@CreationTimestamp
 	@Column(updatable = false)

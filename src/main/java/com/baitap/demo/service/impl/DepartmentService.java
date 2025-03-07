@@ -7,6 +7,8 @@ import com.baitap.demo.service.IDepartmentService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -16,10 +18,13 @@ import java.util.List;
 public class DepartmentService implements IDepartmentService {
 	IDepartmentRepository departmentRepository;
 
+
 	@Override
-	public List<Department> findAll() {
-		return departmentRepository.findAll();
+	public Page<Department> findAll(Pageable pageable) {
+		return departmentRepository.findAll(pageable);
 	}
+
+
 
 	@Override
 	public Department findById(long id) {

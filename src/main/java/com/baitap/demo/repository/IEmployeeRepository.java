@@ -3,6 +3,8 @@ package com.baitap.demo.repository;
 import com.baitap.demo.dto.employee.EmployeeSearchRequest;
 import com.baitap.demo.enums.Gender;
 import com.baitap.demo.modal.Employee;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -32,15 +34,17 @@ public interface IEmployeeRepository extends JpaRepository<Employee, Integer> {
 				end
 			)
 			""",nativeQuery = true)
-	List<Employee> findByAttributes(@Param("name") String name,
+	Page<Employee> findByAttributes(@Param("name") String name,
 									@Param("dobFrom") LocalDate dobFrom,
 									@Param("dobTo") LocalDate dobTo,
 									@Param("gender") String gender,
 									@Param("phone") String phone,
 									@Param("departmentId") Integer departmentId,
-									@Param("salaryRange") String salaryRange);
+									@Param("salaryRange") String salaryRange,
+									Pageable pageable
+	);
 	Employee findById(long id);
 	Employee save(Employee employee);
 
-	void deleteById(long id);
+	void deleteById(int id);
 }

@@ -5,6 +5,8 @@ import com.baitap.demo.exception.ApiException;
 import com.baitap.demo.exception.ErrorCode;
 import com.baitap.demo.modal.Department;
 import com.baitap.demo.util.JsonInclude;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 public interface IDepartmentRepository extends JpaRepository<Department, Long> {
-	List<Department> findAll();
+	Page<Department> findAll(Pageable pageable);
 
 	Department findById(long id);
 
