@@ -22,11 +22,8 @@ public class Department {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	String name;
-
 	@OneToMany(mappedBy = "department")
-	@JsonIgnore
-	private List<Employee> employees;
-
+	List<Employee> employees;
 	@CreationTimestamp
 	@Column(updatable = false)
 	LocalDateTime createdAt;

@@ -1,8 +1,11 @@
 package com.baitap.demo.controller;
 
 
+import com.baitap.demo.dto.employee.EmployeeRequest;
+import com.baitap.demo.dto.employee.EmployeeResponse;
 import com.baitap.demo.dto.employee.EmployeeSearchRequest;
 import com.baitap.demo.dto.page.PageResponse;
+import com.baitap.demo.mapper.IEmployeeMapper;
 import com.baitap.demo.modal.Employee;
 
 import com.baitap.demo.dto.ApiResponse;
@@ -27,35 +30,44 @@ import java.util.*;
 @FieldDefaults(level = AccessLevel.PRIVATE,makeFinal = true)
 public class EmployeeController {
 	IEmployeeService employeeService;
+	IEmployeeMapper employeeMapper;
 	@GetMapping
 	public ResponseEntity<?> getAll(
 			EmployeeSearchRequest employeeSearchRequest,
 			Pageable pageable
 	) {
 
-		return JsonInclude.ok(new PageResponse<>(employeeService.findByAttributes(employeeSearchRequest,pageable)));
+		return JsonInclude.ok(new PageResponse<>(employeeService.findByAttributes(employeeSearchRequest,pageable)
+				.map(employeeMapper::employeeToEmployeeResponse)
+		));
 	}
 
 	@PostMapping
-	public ResponseEntity<ApiResponse<Employee>> createEmployee(@RequestBody Employee employee) {
-
-		return JsonInclude.created(employeeService.save(employee));
+	public ResponseEntity<ApiResponse<EmployeeResponse>> createEmployee(@RequestBody EmployeeRequest employeeRequest) {
+		Employee employee = employeeMapper.employeeRequestToEmployee(employeeRequest);
+		employee = employeeService.save(employee);
+		EmployeeResponse employeeResponse = employeeMapper.employeeToEmployeeResponse(employee);
+		return JsonInclude.created(employeeResponse);
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<ApiResponse<Employee>> getEmployeeById(@PathVariable int id) {
+	public ResponseEntity<ApiResponse<EmployeeResponse>> getEmployeeById(@PathVariable int id) {
 		if(employeeService.findById(id) != null){
-			return JsonInclude.ok(employeeService.findById(id));
+			EmployeeResponse employeeResponse = employeeMapper.employeeToEmployeeResponse(employeeService.findById(id));
+			return JsonInclude.ok(employeeResponse);
 		}
 		throw  new ApiException(ErrorCode.EMPLOYEE_NOT_FOUND);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<ApiResponse<Employee>> updateEmployee(@PathVariable int id, @RequestBody Employee employee) {
+	public ResponseEntity<ApiResponse<EmployeeResponse>> updateEmployee(@PathVariable int id, @RequestBody EmployeeRequest employeeRequest) {
 		Employee existingEmployee = employeeService.findById(id);
 		if (existingEmployee != null) {
+			Employee employee = employeeMapper.employeeRequestToEmployee(employeeRequest);
 			employee.setId(id);
-			return JsonInclude.ok(employeeService.save(employee));
+			employee = employeeService.save(employee);
+			EmployeeResponse employeeResponse = employeeMapper.employeeToEmployeeResponse(employee);
+			return JsonInclude.ok(employeeResponse);
 		}
 		throw new ApiException(ErrorCode.EMPLOYEE_NOT_FOUND);
 	}
